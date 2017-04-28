@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="150" height="20" tilewidth="32" tileheight="32" nextobjectid="1">
  <tileset firstgid="1" name="background" tilewidth="32" tileheight="32" tilecount="1" columns="1">
-  <image source="../../../Resources/game_jam_art/music_run/background.png" width="32" height="32"/>
+  <image source="background.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="2" name="dead" tilewidth="32" tileheight="32" tilecount="1" columns="1">
-  <image source="../../../Resources/game_jam_art/music_run/dead.png" width="32" height="32"/>
+  <image source="dead.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="3" name="ground_bottom" tilewidth="32" tileheight="32" tilecount="1" columns="1">
-  <image source="../../../Resources/game_jam_art/music_run/ground_bottom.png" width="32" height="32"/>
+  <image source="ground_bottom.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="4" name="ground_top" tilewidth="32" tileheight="32" tilecount="1" columns="1">
-  <image source="../../../Resources/game_jam_art/music_run/ground_top.png" width="32" height="32"/>
+  <image source="ground_top.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="5" name="left_tap" tilewidth="32" tileheight="32" tilecount="1" columns="1">
-  <image source="../../../Resources/game_jam_art/music_run/left_tap.png" width="32" height="32"/>
+  <image source="left_tap.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="6" name="right_tap" tilewidth="32" tileheight="32" tilecount="1" columns="1">
-  <image source="../../../Resources/game_jam_art/music_run/right_tap.png" width="32" height="32"/>
+  <image source="right_tap.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="7" name="collider" tilewidth="32" tileheight="32" tilecount="25" columns="5">
-  <image source="../../../Resources/game_jam_art/place_holder_platform3.png" width="160" height="160"/>
+  <image source="place_holder_platform3.png" width="160" height="160"/>
   <tile id="0">
    <objectgroup draworder="index">
     <object id="1" x="0" y="0" width="32" height="32"/>

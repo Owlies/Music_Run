@@ -7,10 +7,10 @@ public class PlayerController : MonoBehaviour {
 
 	// Components
 	private Rigidbody2D mRigidbody;
-	private WaveController mWaveController;
+	//private WaveController mWaveController;
 	private GameObject mWaveCollider;
 	private Animator mAnimator;
-	private MusicManager mMusicManager;
+	//private MusicManager mMusicManager;
 
 	// Movements
 	public float mJumpForce = 8f;
@@ -31,11 +31,11 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		mRigidbody = this.GetComponent<Rigidbody2D>();
-		mWaveCollider = GameObject.FindGameObjectWithTag("waveCollider");
-		mWaveController = mWaveCollider.GetComponent<WaveController>();
+		//mWaveCollider = GameObject.FindGameObjectWithTag("waveCollider");
+		//mWaveController = mWaveCollider.GetComponent<WaveController>();
 		isCastingWave = false;
 		distanceToGround = this.GetComponent<BoxCollider2D>().bounds.max.y - mRigidbody.transform.position.y;
-		mAnimator = this.GetComponent<Animator>();
+		//mAnimator = this.GetComponent<Animator>();
 		//mMusicManager = GameObject.FindGameObjectWithTag("musicManager").GetComponent<MusicManager>();
 	}
 	
@@ -46,6 +46,8 @@ public class PlayerController : MonoBehaviour {
 		checkPlayerJumpingAnimation(isOnGround);
 
 		checkDeath();
+
+        Debug.Log(Time.timeSinceLevelLoad);
 	}
 	// Update is called once per frame
 	void Update() {
@@ -53,7 +55,7 @@ public class PlayerController : MonoBehaviour {
 		
 		handleKeyBoardInput(isOnGround);
 
-		handleCastWavesKeyboard();
+		//handleCastWavesKeyboard();
 	}
 
 	#endregion
@@ -96,9 +98,9 @@ public class PlayerController : MonoBehaviour {
 
 	public bool isGrounded() {
 		RaycastHit2D hit = Physics2D.Raycast(mRigidbody.transform.position, Vector2.down, distanceToGround + 0.5f);
-		if (hit.collider != null && hit.collider.CompareTag("photon")) {
-			return false;
-		}
+		//if (hit.collider != null && hit.collider.CompareTag("photon")) {
+		//	return false;
+		//}
 		return hit.collider != null;
 	}
 
@@ -108,47 +110,47 @@ public class PlayerController : MonoBehaviour {
 	private void playerRestart() {
 		death();
 	}
-	private bool canCastWave() {
-		if (isCastingWave) {
-			return false;
-		}
+	//private bool canCastWave() {
+	//	if (isCastingWave) {
+	//		return false;
+	//	}
 
-		if (!mWaveController.canCastWave()) {
-			return false;
-		}
+	//	if (!mWaveController.canCastWave()) {
+	//		return false;
+	//	}
 
-		return true;
-	}
-	public void handleCastWavesKeyboard() {
-		if (Input.GetKeyDown(KeyCode.Space) && canCastWave()) {
-			isCastingWave = true;
-		}
+	//	return true;
+	//}
+	//public void handleCastWavesKeyboard() {
+	//	if (Input.GetKeyDown(KeyCode.Space) && canCastWave()) {
+	//		isCastingWave = true;
+	//	}
 
-		if (!isCastingWave) {
-			return;
-		}
+	//	if (!isCastingWave) {
+	//		return;
+	//	}
 
-		if (Input.GetKey(KeyCode.Space)) {
-			wavePressedTime += Time.deltaTime;
-		}
+	//	if (Input.GetKey(KeyCode.Space)) {
+	//		wavePressedTime += Time.deltaTime;
+	//	}
 
-		if (Input.GetKeyUp(KeyCode.Space) || wavePressedTime >= WavePressMaximumTime) {
-			castWave();
-		}
-	}
-	public void castWave() {
-		if (wavePressedTime < WaveMidPressTimeThreshold) {
-				mWaveController.castWave(WaveController.WaveType.Short);
-			} else if (wavePressedTime < WaveLongPressTimeThreshold) {
-				mWaveController.castWave(WaveController.WaveType.Mid);
-			} else {
-				mWaveController.castWave(WaveController.WaveType.Long);
-			}
-			//mAnimator.SetTrigger("castAbility");
-			//mMusicManager.PlayAbilitySound();
-			wavePressedTime = 0.0f;
-			isCastingWave = false;
-	}
+	//	if (Input.GetKeyUp(KeyCode.Space) || wavePressedTime >= WavePressMaximumTime) {
+	//		castWave();
+	//	}
+	//}
+	//public void castWave() {
+	//	if (wavePressedTime < WaveMidPressTimeThreshold) {
+	//			mWaveController.castWave(WaveController.WaveType.Short);
+	//		} else if (wavePressedTime < WaveLongPressTimeThreshold) {
+	//			mWaveController.castWave(WaveController.WaveType.Mid);
+	//		} else {
+	//			mWaveController.castWave(WaveController.WaveType.Long);
+	//		}
+	//		//mAnimator.SetTrigger("castAbility");
+	//		//mMusicManager.PlayAbilitySound();
+	//		wavePressedTime = 0.0f;
+	//		isCastingWave = false;
+	//}
 
 	private void checkDeath() {
 		if (mRigidbody.transform.position.y <= -100) {
@@ -169,24 +171,24 @@ public class PlayerController : MonoBehaviour {
 		//  mMusicManager.PlayRespwanSound();
 	}
 
-	public float waveCastCDLeft() {
-		float cd = mWaveController.waveCastCD();
-		if (cd < 0) {
-			cd = 0;
-		}
+	//public float waveCastCDLeft() {
+	//	float cd = mWaveController.waveCastCD();
+	//	if (cd < 0) {
+	//		cd = 0;
+	//	}
 
-		return cd;
-	}
+	//	return cd;
+	//}
 
-	public WaveController.WaveType waveTypeMessageForUI() {
-		if (wavePressedTime < WaveMidPressTimeThreshold) {
-			return WaveController.WaveType.Short;
-		} else if (wavePressedTime < WaveLongPressTimeThreshold) {
-			return WaveController.WaveType.Mid;
-		} else {
-			return WaveController.WaveType.Long;
-		}
-	}
+	//public WaveController.WaveType waveTypeMessageForUI() {
+	//	if (wavePressedTime < WaveMidPressTimeThreshold) {
+	//		return WaveController.WaveType.Short;
+	//	} else if (wavePressedTime < WaveLongPressTimeThreshold) {
+	//		return WaveController.WaveType.Mid;
+	//	} else {
+	//		return WaveController.WaveType.Long;
+	//	}
+	//}
 
 	#endregion
 
