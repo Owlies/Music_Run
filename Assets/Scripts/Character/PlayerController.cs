@@ -7,8 +7,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Components
 	private Rigidbody2D mRigidbody;
-	private GameObject mWaveCollider;
-	private Animator mAnimator;
+	//private Animator mAnimator;
 	//private MusicManager mMusicManager;
 
 	// Movements
@@ -17,6 +16,11 @@ public class PlayerController : MonoBehaviour {
 	public float horizontalSpeed = 2.5f;
 	private bool isFalling = false;
 	private bool isInAir = false;
+    private bool isOnGround = false;
+
+    // Jump
+    private bool leftTapJumpEnabled = false;
+    private bool rightTapJumpEnabled = false;
 	
 	#region LifeCycle
 	// Use this for initialization
@@ -28,10 +32,10 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	void FixedUpdate() {
-		bool isOnGround = isGrounded();
+		isOnGround = isGrounded();
 		updatePlayerHorizontally();
 
-		checkPlayerJumpingAnimation(isOnGround);
+		checkPlayerJumpingAnimation();
 
 		checkDeath();
 
@@ -40,15 +44,15 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
-		bool isOnGround = isGrounded();
+		isOnGround = isGrounded();
 		
-		handleKeyBoardInput(isOnGround);
+		handleKeyBoardInput();
 	}
 
 	#endregion
 
 	#region PlayerMovement
-	void checkPlayerJumpingAnimation(bool isOnGround) {
+	void checkPlayerJumpingAnimation() {
 		if (isInAir && mRigidbody.velocity.y < -0.1f) {
 			isFalling = true;
 			//mAnimator.SetBool("isFalling", isFalling);
@@ -65,17 +69,25 @@ public class PlayerController : MonoBehaviour {
 		mRigidbody.velocity = new Vector2(horizontalSpeed, mRigidbody.velocity.y);
 	}
 
-	public void handleKeyBoardInput (bool isOnGround) {
+	public void handleKeyBoardInput () {
 		if (Input.GetKeyDown(KeyCode.UpArrow)) {
-			playerJump(isOnGround);
+			playerJump();
 		}
 
 		if (Input.GetKeyDown(KeyCode.R)) {
 			playerRestart();
 		}
+
+        if (leftTapJumpEnabled && Input.GetKeyDown(KeyCode.Z)) {
+            playerJump();
+        }
+
+        if (rightTapJumpEnabled && Input.GetKeyDown(KeyCode.X)) {
+            playerJump();
+        }
 	}
 
-	public void playerJump(bool isOnGround) {
+	public void playerJump() {
 		if (isOnGround && !isInAir) {
 			float jumpForce = mJumpForce;
 			mRigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
@@ -114,6 +126,29 @@ public class PlayerController : MonoBehaviour {
 		//  mMusicManager.PlayRespwanSound();
 	}
 
-	#endregion
+    #endregion
+
+    #region PlayerTap
+
+    public void enableLeftTapJump() {
+        leftTapJumpEnabled = true;
+        Debug.Log("enableLeftTapJump");
+    }
+
+    public void disableLeftTapJump() {
+        leftTapJumpEnabled = false;
+        Debug.Log("disableLeftTapJump");
+    }
+
+    public void enableRightTapJump() {
+        rightTapJumpEnabled = true;
+        Debug.Log("enableRightTapJump");
+    }
+
+    public void disableRightTapJump() {
+        rightTapJumpEnabled = false;
+        Debug.Log("disableRightTapJump");
+    }
+    #endregion
 
 }

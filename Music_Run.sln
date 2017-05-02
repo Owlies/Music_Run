@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music_Run.CSharp", "Music_Run.CSharp.csproj", "{92439971-C067-0478-4982-69CD2C9286FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music_Run.CSharp.Editor", "Music_Run.CSharp.Editor.csproj", "{8DDE1D6A-84E5-7A4C-CFEE-F1FB293F3400}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{92439971-C067-0478-4982-69CD2C9286FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92439971-C067-0478-4982-69CD2C9286FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92439971-C067-0478-4982-69CD2C9286FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92439971-C067-0478-4982-69CD2C9286FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DDE1D6A-84E5-7A4C-CFEE-F1FB293F3400}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DDE1D6A-84E5-7A4C-CFEE-F1FB293F3400}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DDE1D6A-84E5-7A4C-CFEE-F1FB293F3400}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DDE1D6A-84E5-7A4C-CFEE-F1FB293F3400}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
