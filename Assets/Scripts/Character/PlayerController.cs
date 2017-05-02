@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour {
 
 	// Components
 	private Rigidbody2D mRigidbody;
-	//private WaveController mWaveController;
 	private GameObject mWaveCollider;
 	private Animator mAnimator;
 	//private MusicManager mMusicManager;
@@ -18,22 +17,11 @@ public class PlayerController : MonoBehaviour {
 	public float horizontalSpeed = 2.5f;
 	private bool isFalling = false;
 	private bool isInAir = false;
-
-	// Ability
-	// Used as initial amount
-	private float wavePressedTime = 0;
-	public float WaveMidPressTimeThreshold = 0.1f;
-	public float WaveLongPressTimeThreshold = 2.0f;
-	public float WavePressMaximumTime = 4.0f;
-	private bool isCastingWave = false;
 	
 	#region LifeCycle
 	// Use this for initialization
 	void Start () {
 		mRigidbody = this.GetComponent<Rigidbody2D>();
-		//mWaveCollider = GameObject.FindGameObjectWithTag("waveCollider");
-		//mWaveController = mWaveCollider.GetComponent<WaveController>();
-		isCastingWave = false;
 		distanceToGround = this.GetComponent<BoxCollider2D>().bounds.max.y - mRigidbody.transform.position.y;
 		//mAnimator = this.GetComponent<Animator>();
 		//mMusicManager = GameObject.FindGameObjectWithTag("musicManager").GetComponent<MusicManager>();
@@ -47,15 +35,14 @@ public class PlayerController : MonoBehaviour {
 
 		checkDeath();
 
-        Debug.Log(Time.timeSinceLevelLoad);
+        //Debug.Log(Time.timeSinceLevelLoad);
 	}
+
 	// Update is called once per frame
 	void Update() {
 		bool isOnGround = isGrounded();
 		
 		handleKeyBoardInput(isOnGround);
-
-		//handleCastWavesKeyboard();
 	}
 
 	#endregion
@@ -98,9 +85,6 @@ public class PlayerController : MonoBehaviour {
 
 	public bool isGrounded() {
 		RaycastHit2D hit = Physics2D.Raycast(mRigidbody.transform.position, Vector2.down, distanceToGround + 0.5f);
-		//if (hit.collider != null && hit.collider.CompareTag("photon")) {
-		//	return false;
-		//}
 		return hit.collider != null;
 	}
 
@@ -110,48 +94,7 @@ public class PlayerController : MonoBehaviour {
 	private void playerRestart() {
 		death();
 	}
-	//private bool canCastWave() {
-	//	if (isCastingWave) {
-	//		return false;
-	//	}
-
-	//	if (!mWaveController.canCastWave()) {
-	//		return false;
-	//	}
-
-	//	return true;
-	//}
-	//public void handleCastWavesKeyboard() {
-	//	if (Input.GetKeyDown(KeyCode.Space) && canCastWave()) {
-	//		isCastingWave = true;
-	//	}
-
-	//	if (!isCastingWave) {
-	//		return;
-	//	}
-
-	//	if (Input.GetKey(KeyCode.Space)) {
-	//		wavePressedTime += Time.deltaTime;
-	//	}
-
-	//	if (Input.GetKeyUp(KeyCode.Space) || wavePressedTime >= WavePressMaximumTime) {
-	//		castWave();
-	//	}
-	//}
-	//public void castWave() {
-	//	if (wavePressedTime < WaveMidPressTimeThreshold) {
-	//			mWaveController.castWave(WaveController.WaveType.Short);
-	//		} else if (wavePressedTime < WaveLongPressTimeThreshold) {
-	//			mWaveController.castWave(WaveController.WaveType.Mid);
-	//		} else {
-	//			mWaveController.castWave(WaveController.WaveType.Long);
-	//		}
-	//		//mAnimator.SetTrigger("castAbility");
-	//		//mMusicManager.PlayAbilitySound();
-	//		wavePressedTime = 0.0f;
-	//		isCastingWave = false;
-	//}
-
+	
 	private void checkDeath() {
 		if (mRigidbody.transform.position.y <= -100) {
 			death();
@@ -170,25 +113,6 @@ public class PlayerController : MonoBehaviour {
     	 SceneManager.LoadScene (loadedLevel.buildIndex);
 		//  mMusicManager.PlayRespwanSound();
 	}
-
-	//public float waveCastCDLeft() {
-	//	float cd = mWaveController.waveCastCD();
-	//	if (cd < 0) {
-	//		cd = 0;
-	//	}
-
-	//	return cd;
-	//}
-
-	//public WaveController.WaveType waveTypeMessageForUI() {
-	//	if (wavePressedTime < WaveMidPressTimeThreshold) {
-	//		return WaveController.WaveType.Short;
-	//	} else if (wavePressedTime < WaveLongPressTimeThreshold) {
-	//		return WaveController.WaveType.Mid;
-	//	} else {
-	//		return WaveController.WaveType.Long;
-	//	}
-	//}
 
 	#endregion
 
