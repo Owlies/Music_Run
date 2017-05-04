@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour {
 		checkDeath();
 
         //Debug.Log(Time.timeSinceLevelLoad);
-	}
+    }
 
 	// Update is called once per frame
 	void Update() {
