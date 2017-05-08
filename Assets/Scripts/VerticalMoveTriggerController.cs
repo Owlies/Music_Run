@@ -5,6 +5,8 @@ using UnityEngine;
 public class VerticalMoveTriggerController : MonoBehaviour {
 	public bool enableMove = true;
 	public GameObject nextTarget;
+    public Camera mainCamera;
+    public float offsetY = 0.0f;
 	// Use this for initialization
 	void Start () {
 		
@@ -14,15 +16,18 @@ public class VerticalMoveTriggerController : MonoBehaviour {
 	void Update () {
 		
 	}
+
 	void OnTriggerEnter2D(Collider2D other) {
         if (!other.CompareTag("Player")) {
             return;
         }
 
         if(enableMove) {
-			other.SendMessage("setVerticalSpeedTowardsTarget", nextTarget.transform.position);
+            mainCamera.GetComponent<CameraController>().offsetY += offsetY;
+            other.SendMessage("setVerticalSpeedTowardsTarget", nextTarget.transform.position);
 		} else {
-			other.SendMessage("setVerticalSpeedToZero");
+            mainCamera.GetComponent<CameraController>().offsetY -= offsetY;
+            other.SendMessage("setVerticalSpeedToZero");
 		}
     }
 }

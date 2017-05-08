@@ -1,8 +1,8 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music_Run", "Assembly-CSharp.csproj", "{F9270E32-D160-82BF-38EC-E00FEDBECE92}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music_Run.CSharp", "Music_Run.CSharp.csproj", "{92439971-C067-0478-4982-69CD2C9286FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music_Run", "Assembly-CSharp-Editor.csproj", "{A0F8211A-F815-93FF-525A-5727A6DA2E02}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music_Run.CSharp.Editor", "Music_Run.CSharp.Editor.csproj", "{8DDE1D6A-84E5-7A4C-CFEE-F1FB293F3400}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,16 +10,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F9270E32-D160-82BF-38EC-E00FEDBECE92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F9270E32-D160-82BF-38EC-E00FEDBECE92}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F9270E32-D160-82BF-38EC-E00FEDBECE92}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F9270E32-D160-82BF-38EC-E00FEDBECE92}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A0F8211A-F815-93FF-525A-5727A6DA2E02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A0F8211A-F815-93FF-525A-5727A6DA2E02}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A0F8211A-F815-93FF-525A-5727A6DA2E02}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A0F8211A-F815-93FF-525A-5727A6DA2E02}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
+		{92439971-C067-0478-4982-69CD2C9286FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92439971-C067-0478-4982-69CD2C9286FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92439971-C067-0478-4982-69CD2C9286FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92439971-C067-0478-4982-69CD2C9286FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DDE1D6A-84E5-7A4C-CFEE-F1FB293F3400}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DDE1D6A-84E5-7A4C-CFEE-F1FB293F3400}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DDE1D6A-84E5-7A4C-CFEE-F1FB293F3400}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DDE1D6A-84E5-7A4C-CFEE-F1FB293F3400}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

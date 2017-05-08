@@ -31,7 +31,8 @@ public class PlayerController : MonoBehaviour {
 		//mAnimator = this.GetComponent<Animator>();
 		//mMusicManager = GameObject.FindGameObjectWithTag("musicManager").GetComponent<MusicManager>();
 		mRigidbody.velocity = new Vector2(horizontalSpeed, 0.0f);
-	}
+        initialGravityScale = mRigidbody.gravityScale;
+    }
 	
 	void FixedUpdate() {
 		isOnGround = isGrounded();
@@ -75,11 +76,11 @@ public class PlayerController : MonoBehaviour {
 			playerRestart();
 		}
 
-        if (leftTapJumpEnabled && Input.GetKeyDown(KeyCode.Z)) {
+        if (leftTapJumpEnabled && (Input.GetKeyDown(KeyCode.Z) || Input.GetKey(KeyCode.Z))) {
             playerJump();
         }
 
-        if (rightTapJumpEnabled && Input.GetKeyDown(KeyCode.X)) {
+        if (rightTapJumpEnabled && (Input.GetKeyDown(KeyCode.X) || Input.GetKey(KeyCode.X))) {
             playerJump();
         }
 	}
@@ -89,7 +90,6 @@ public class PlayerController : MonoBehaviour {
 		float yDistance = targetPos.y - transform.position.y;
 		float time = xDistance / mRigidbody.velocity.x;
 		mRigidbody.velocity = new Vector2(horizontalSpeed, yDistance / time);
-		initialGravityScale = mRigidbody.gravityScale;
 		mRigidbody.gravityScale = 0.0f;
 	}
 
