@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
 	private bool isFalling = false;
 	private bool isInAir = false;
     private bool isOnGround = false;
+	private float initialGravityScale = 0.0f;
 
     // Jump
     private bool leftTapJumpEnabled = false;
@@ -29,11 +30,11 @@ public class PlayerController : MonoBehaviour {
 		distanceToGround = this.GetComponent<BoxCollider2D>().bounds.max.y - mRigidbody.transform.position.y;
 		//mAnimator = this.GetComponent<Animator>();
 		//mMusicManager = GameObject.FindGameObjectWithTag("musicManager").GetComponent<MusicManager>();
+		mRigidbody.velocity = new Vector2(horizontalSpeed, 0.0f);
 	}
 	
 	void FixedUpdate() {
 		isOnGround = isGrounded();
-		updatePlayerHorizontally();
 
 		checkPlayerJumpingAnimation();
 
@@ -65,10 +66,6 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	void updatePlayerHorizontally() {
-		mRigidbody.velocity = new Vector2(horizontalSpeed, mRigidbody.velocity.y);
-	}
-
 	public void handleKeyBoardInput () {
 		if (Input.GetKeyDown(KeyCode.UpArrow)) {
 			playerJump();
@@ -85,6 +82,20 @@ public class PlayerController : MonoBehaviour {
         if (rightTapJumpEnabled && Input.GetKeyDown(KeyCode.X)) {
             playerJump();
         }
+	}
+
+	public void setVerticalSpeedTowardsTarget(Vector3 targetPos) {
+		float xDistance = Mathf.Abs(targetPos.x - transform.position.x);
+		float yDistance = targetPos.y - transform.position.y;
+		float time = xDistance / mRigidbody.velocity.x;
+		mRigidbody.velocity = new Vector2(horizontalSpeed, yDistance / time);
+		initialGravityScale = mRigidbody.gravityScale;
+		mRigidbody.gravityScale = 0.0f;
+	}
+
+	public void setVerticalSpeedToZero() {
+		mRigidbody.velocity = new Vector2(horizontalSpeed, 0.0f);
+		mRigidbody.gravityScale = initialGravityScale;
 	}
 
 	public void playerJump() {
