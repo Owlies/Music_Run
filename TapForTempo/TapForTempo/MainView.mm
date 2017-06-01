@@ -11,6 +11,7 @@
 @interface MainView ()
 
 @property (nonatomic) NSMutableArray* array;
+@property (nonatomic) NSDate* startTime;
 
 @end
 @implementation MainView
@@ -23,17 +24,19 @@
 
 - (IBAction)StartRecord:(id)sender {
     _array = [NSMutableArray array];
+    _startTime = [NSDate date];
 }
 
 - (void)keyDown:(NSEvent *)event {
     NSString* str = [event characters];
 
-    NSDate * now = [NSDate date];
-    NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
-    [outputFormatter setDateFormat:@"HH:mm:ss"];
-    NSString *curTime = [outputFormatter stringFromDate:now];
+    NSTimeInterval now = [[NSDate date] timeIntervalSinceDate:_startTime];
+//    NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
+//    [outputFormatter setDateFormat:@"HH:mm:ss.SSS"];
+//    NSString *curTime = [outputFormatter stringFromDate:now];
     
-    NSString* record = [NSString stringWithFormat:@"%@: %@", curTime, str];
+    NSString* record = [NSString stringWithFormat:@"%f: %@", now, str];
+    NSLog(@"%f", now);
     [_array addObject:record];
 }
 
